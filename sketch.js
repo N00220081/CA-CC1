@@ -138,6 +138,16 @@ function setup(){
         titleFontStyle:fontReg,
 		titleColour: "#46387C",
 
+        // Legend 
+        legendX: 100,
+        legendY: 100,
+        legendWidth: 15,
+        legendHeight: 15,
+        legendTextSize: 15,
+        legendText: "Girls",
+        legendFontStyle: fontBold,
+        legendFontColour: "#46387C"
+        
         
     }
 

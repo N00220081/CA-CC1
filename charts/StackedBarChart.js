@@ -51,6 +51,18 @@ class StackedBarChart{
 		this.titleSize = obj.titleSize;
 		this.titleColour = obj.titleColour;
 		this.titleWidth = this.chartWidth/2;
+
+		// Legend
+        this.legendX = obj.xPos;
+        this.legendY = obj.legendY;
+        this.legendWidth = obj.legendWidth;
+        this.legendHeight = obj.legendHeight;
+        this.legendTextSize = obj.legendTextSize;
+        this.legendText = obj.legendText;
+        this.legendFontStyle = obj.legendFontStyle;
+        this.legendFontColour = obj.legendFontColour;
+        this.legendTextX = obj.legendX + (this.legendWidth * 2);
+        this.legendTextY = obj.legendY + this.legendHeight;
 		
 	}
 
@@ -71,6 +83,15 @@ class StackedBarChart{
 		push();
 
 		translate(gap, 0);
+		// Legend
+		noStroke();
+		textSize(this.legendTextSize);
+		textFont(this.legendFontStyle);
+		fill(this.legendFontColour);
+		text(this.legendText, this.legendTextX , this.legendTextY);
+		fill(colors[0]);
+		rect(this.legendC, -this.yPos/2, this.legendWidth, this.legendHeight);
+
 		for(let i = 0; i < this.data.length; i++){
 			push();
 			// Making the bars
