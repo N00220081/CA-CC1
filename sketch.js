@@ -4,7 +4,7 @@ let data2;
 let cleanData1=[];
 let cleanData2=[];
 let numRows;
-let colors = ["#8C5483","#6C4166"];
+let colors = ["#8C5483","#53324D"];
 
 
 let fontLight;
@@ -144,37 +144,75 @@ function setup(){
         legendWidth: 15,
         legendHeight: 15,
         legendTextSize: 15,
-        legendText: "Girls",
+        legendText: ["Girls","Boys"],
         legendFontStyle: fontBold,
         legendFontColour: "#46387C"
         
         
     }
 
-    // let barChart03 = {
-    //     data:cleanData2,
-    //     chartHeight:300,
-    //     chartWidth:300,
-    //     xPos:900,
-    //     yPos:350,
-    //     axisLineColour:"#d9d9d9",
-    //     labelColour:"#37b3cc",
-    //     barWidth:30,
-    //     yValue: "Female",
-    //     xValue:"Jorney_Time",
-    //     labelRotation:45,
-    //     labelSize:100,
-    //     numTicks:5,
-    //     barColor:"#03fc8c",
-    //     barStroke:"#fcba03",
-    //     barStrokeWeight:3,
-    //     labelRotation:45,
-    //     labelTextSize:10,
-    //     tickColor:"#9003fc",
-    //     tickValueColor:"#fc0335",
-    //     valueGap:-10,
-    //     tickLength:-5
-    // }
+    let hundStackedBarChart = {
+
+        data:cleanData1,
+        
+        // Size of chart
+        chartHeight:300,
+        chartWidth:400,
+
+        // Position of chart
+        xPos:400,
+        yPos:900,
+
+        // Axis decoration and the values of the chart
+        axisLineColour:"#151126",
+        axisLineThickness: 1.3,
+        xValue: "Year",
+        yValues:["Female", "Male"],
+        zValue:"Total",
+
+        // Bars
+        barWidth:28,
+        // barColor:"#8C5483",
+        // barStroke:"#8C5483",
+        // barStrokeWeight: 0,
+
+        // Labels
+        labelRotation:45,
+        labelColour:"#2F3159",
+        labelTextSize:14,
+        labelFontStyle:fontBold,
+
+        
+        // Ticks
+        numTicks:5,
+        tickColor:"#151126",
+        tickValueColor:"#151126",
+        tickFontStyle:fontReg,
+        tickTextSize:14,
+        tickLength:-5,
+        valueGap:-10,
+
+
+        // Title
+        titleText: "How many Children from 1st - 6th Class Enrolled",
+        titleXOffset: CENTER,
+        titleYOffset: BOTTOM,
+        titleSize: 22,
+        titleFontStyle:fontReg,
+		titleColour: "#46387C",
+
+        // Legend 
+        legendX: 100,
+        legendY: 100,
+        legendWidth: 15,
+        legendHeight: 15,
+        legendTextSize: 15,
+        legendText: ["Girls", "Boys"],
+        legendFontStyle: fontBold,
+        legendFontColour: "#46387C"
+        
+        
+    }
 
     // let barChart04 = {
     //     data:cleanData2,
@@ -230,7 +268,7 @@ function setup(){
 
     barCharts.push(new BarChart(barChart))
     barCharts.push(new StackedBarChart(stackedBarChart))
-    // barCharts.push(new BarChart(barChart03))
+    barCharts.push(new HundStackedBarChart(hundStackedBarChart))
     // barCharts.push(new StackedBarChart(barChart04))
     // barCharts.push(new ScatterPlotChart(barChart05))
 }

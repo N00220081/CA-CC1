@@ -53,16 +53,16 @@ class StackedBarChart{
 		this.titleWidth = this.chartWidth/2;
 
 		// Legend
-        this.legendX = obj.xPos;
-        this.legendY = obj.legendY;
+        this.legendX = obj.xPos - (this.chartWidth/1.5);
+        this.legendY = obj.yPos/2;
         this.legendWidth = obj.legendWidth;
         this.legendHeight = obj.legendHeight;
         this.legendTextSize = obj.legendTextSize;
         this.legendText = obj.legendText;
         this.legendFontStyle = obj.legendFontStyle;
         this.legendFontColour = obj.legendFontColour;
-        this.legendTextX = obj.legendX + (this.legendWidth * 2);
-        this.legendTextY = obj.legendY + this.legendHeight;
+        this.legendTextX = this.legendX + 25;
+        this.legendTextY = this.legendY - 12;
 		
 	}
 
@@ -84,13 +84,19 @@ class StackedBarChart{
 
 		translate(gap, 0);
 		// Legend
-		noStroke();
-		textSize(this.legendTextSize);
-		textFont(this.legendFontStyle);
-		fill(this.legendFontColour);
-		text(this.legendText, this.legendTextX , this.legendTextY);
-		fill(colors[0]);
-		rect(this.legendC, -this.yPos/2, this.legendWidth, this.legendHeight);
+		for (let i = 0; i < this.yValues.length; i++) {
+            // Calculate position for each legend item
+            let yOffset = i * 25; 
+
+            noStroke();
+            textSize(this.legendTextSize);
+            textFont(this.legendFontStyle);
+            fill(this.legendFontColour);
+            text(this.legendText[i], this.legendTextX, -this.legendTextY - yOffset);
+
+            fill(colors[i]); 
+            rect(this.legendX, -this.legendY - yOffset, this.legendWidth, this.legendHeight);
+        }
 
 		for(let i = 0; i < this.data.length; i++){
 			push();
