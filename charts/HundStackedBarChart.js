@@ -53,8 +53,8 @@ class HundStackedBarChart {
 		this.titleWidth = this.chartWidth / 2;
 
 		// Legend
-		this.legendX = obj.xPos - (this.chartWidth / 1.5);
-		this.legendY = obj.yPos / 2;
+		this.legendX = obj.xPos + (this.chartWidth / 1.2);
+		this.legendY = obj.yPos / 4;
 		this.legendWidth = obj.legendWidth;
 		this.legendHeight = obj.legendHeight;
 		this.legendTextSize = obj.legendTextSize;
@@ -86,16 +86,15 @@ class HundStackedBarChart {
 		// Legend
 		for (let i = 0; i < this.yValues.length; i++) {
 			// Calculate position for each legend item
-			let yOffset = i * 25;
 
 			noStroke();
 			textSize(this.legendTextSize);
 			textFont(this.legendFontStyle);
 			fill(this.legendFontColour);
-			text(this.legendText[i], this.legendTextX, -this.legendTextY - yOffset);
+			text(this.legendText[i], this.legendTextX, -this.legendTextY - (i * 25));
 
-			fill(colors[i]);
-			rect(this.legendX, -this.legendY - yOffset, this.legendWidth, this.legendHeight);
+            fill(colors[i]); 
+            rect(this.legendX, -this.legendY - (i * 25), this.legendWidth, this.legendHeight);
 		}
 
 		// Making the bars

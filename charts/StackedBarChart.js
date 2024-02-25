@@ -86,16 +86,16 @@ class StackedBarChart{
 		// Legend
 		for (let i = 0; i < this.yValues.length; i++) {
             // Calculate position for each legend item
-            let yOffset = i * 25; 
+        
 
             noStroke();
             textSize(this.legendTextSize);
             textFont(this.legendFontStyle);
             fill(this.legendFontColour);
-            text(this.legendText[i], this.legendTextX, -this.legendTextY - yOffset);
+            text(this.legendText[i], this.legendTextX, -this.legendTextY - (i * 25));
 
             fill(colors[i]); 
-            rect(this.legendX, -this.legendY - yOffset, this.legendWidth, this.legendHeight);
+            rect(this.legendX, -this.legendY - (i * 25), this.legendWidth, this.legendHeight);
         }
 
 		for(let i = 0; i < this.data.length; i++){

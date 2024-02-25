@@ -1,45 +1,66 @@
 class ScatterPlotChart{
 	constructor (obj){
 		this.data = obj.data;
-		//charts
+
+		//Charts
 		this.chartWidth = obj.chartWidth;
 		this.chartHeight = obj.chartHeight;
 		this.xPos = obj.xPos;
 		this.yPos = obj.yPos;
-		//colors + custom
+
+		// Axis
 		this.axisLineColour = obj.axisLineColour;
-		this.labelColour = obj.labelColour;
-		this.fontStyle = obj.fontStyle;
-		this.barColor = obj.barColor;
-		// let barColor=[];
+		this.axisLineThickness = obj.axisLineThickness;
+
+		// Bar decoration
 		this.barStroke = obj.barStroke;
 		this.barStrokeWeight = obj.barStrokeWeight;
-		//bars
+		this.barColor = obj.barColor;
+		//Bars
 		this.barWidth = obj.barWidth;
 		this.yValue = obj.yValue;
 		this.xValue = obj.xValue;
-		//labels
-		this.numTicks = obj.numTicks;
 		this.maxValue = max(this.data.map(d => d[this.yValue]));
 		this.scale = this.chartHeight / this.maxValue;
+
+		//Labels
+		this.labelColour = obj.labelColour;
 		this.labelRotation = obj.labelRotation;
 		this.labelTextSize = obj.labelTextSize;
-		//ticks
+		this.labelFontStyle = obj.labelFontStyle;
+
+
+		//Ticks
+		this.numTicks = obj.numTicks;
 		this.tickColor =  obj.tickColor;
 		this.tickValueColor = obj.tickValueColor;
+		this.tickTextSize = obj.tickTextSize;
 		this.valueGap = obj.valueGap;
 		this.tickLength = obj.tickLength;
+		this.tickFontStyle = obj.tickFontStyle;
+
+
+		// Title
+		this.titleText = obj.titleText;
+		this.titleFontStyle = obj.titleFontStyle;
+		this.titleXOffset = obj.titleXOffset;
+		this.titleYOffset = obj.titleYOffset;
+		this.titleSize = obj.titleSize;
+		this.titleColour = obj.titleColour;
+		this.titleWidth = this.chartWidth/2;
 		
 	}
 
 	render(){
 		
-
 		push();
 		translate (this.xPos, this.yPos);
+		strokeWeight(this.axisLineThickness)
 		stroke(this.axisLineColour);
 		line(0,0,0,-this.chartHeight);
 		line(0,0,this.chartWidth,0 );
+		
+		
 
 		let gap = (this.chartWidth - (this.data.length * this.barWidth))/(this.data.length + 1)
 		let xLabels = this.data.map(d => d[this.xValue]);
@@ -50,29 +71,31 @@ class ScatterPlotChart{
 		translate(gap, 0);
 		for(let i = 0; i < this.data.length; i++){
 			
-			// fill(barColor[i % barColor.length]);
+			// Making the plots
 			fill(this.barColor)
-			stroke(this.barStroke)
-			strokeWeight(this.barStrokeWeight)
-			point(this.barWidth/2, -this.data[i][this.yValue]*this.scale);
+			noStroke();
+			ellipse(this.barWidth, -this.data[i][this.yValue]*this.scale, 10, 10);
+			stroke(180);
+		
 			
+			// Labels
 			push();
 			translate(this.barWidth/2,5);
-			textAlign(LEFT, CENTER);
+			textAlign(LEFT, TOP);
 			rotate(this.labelRotation);
-			noStroke();
 			fill(this.labelColour);
-			
 			textSize(this.labelTextSize);
-			textFont(fontLight)
+			textFont(this.labelFontStyle);
 			text(xLabels[i],0,0);
 			pop()
 			translate(gap+this.barWidth,0)
 		}
 		pop();
-
+// Ticks
 		for(let i = 0; i<=this.numTicks;i++){
 			push();
+			stroke(180);
+			line(0, -this.chartHeight / 10 * i, this.chartWidth, -this.chartHeight / 10 * i);
 			translate(0,i*(-this.chartHeight/this.numTicks))
 			noFill();
 			stroke(this.tickColor)
@@ -80,10 +103,21 @@ class ScatterPlotChart{
 			textAlign(RIGHT, CENTER);
 			noStroke();
 			fill(this.tickValueColor);
+			textSize(this.tickTextSize);
+			textFont(this.tickFontStyle);
+
 			let tickGap =  (this.maxValue / this.numTicks).toFixed(2);
 			text((tickGap*i).toFixed(2),(this.valueGap) - 5,0)
 			pop();
 		}
+
+	// Making the title for the chart
+	textAlign(this.titleXOffset, this.titleYOffset);
+	textSize(this.titleSize);
+	textFont(this.titleFontStyle);
+	fill(this.titleColour);
+	text(this.titleText, this.titleWidth, -425);
+
 
 		pop();
 		
