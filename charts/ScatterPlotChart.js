@@ -16,15 +16,18 @@ class ScatterPlotChart{
 		this.barStroke = obj.barStroke;
 		this.barStrokeWeight = obj.barStrokeWeight;
 		this.barColor = obj.barColor;
+
+
 		//Bars
 		this.barWidth = obj.barWidth;
-		this.yValue = obj.yValue;
 		this.xValue = obj.xValue;
-		this.maxValue = max(this.data.map(d => d[this.yValue]));
-		this.scale = this.chartHeight / this.maxValue;
+		this.yValues = obj.yValues;
+		this.zValue = obj.zValue;
+		this.maxValue = max(this.data.map(d => d[this.zValue]));
 
 		//Labels
 		this.labelColour = obj.labelColour;
+		this.scale = this.chartHeight / this.maxValue;
 		this.labelRotation = obj.labelRotation;
 		this.labelTextSize = obj.labelTextSize;
 		this.labelFontStyle = obj.labelFontStyle;
@@ -48,6 +51,18 @@ class ScatterPlotChart{
 		this.titleSize = obj.titleSize;
 		this.titleColour = obj.titleColour;
 		this.titleWidth = this.chartWidth/2;
+
+		// Legend
+        this.legendX = obj.chartWidth + 20;
+        this.legendY = obj.chartHeight/2;
+        this.legendWidth = obj.legendWidth;
+        this.legendHeight = obj.legendHeight;
+        this.legendTextSize = obj.legendTextSize;
+        this.legendText = obj.legendText;
+        this.legendFontStyle = obj.legendFontStyle;
+        this.legendFontColour = obj.legendFontColour;
+        this.legendTextX = this.legendX + 25;
+        this.legendTextY = this.legendY - 12;
 		
 	}
 
@@ -60,7 +75,6 @@ class ScatterPlotChart{
 		line(0,0,0,-this.chartHeight);
 		line(0,0,this.chartWidth,0 );
 		
-		
 
 		let gap = (this.chartWidth - (this.data.length * this.barWidth))/(this.data.length + 1)
 		let xLabels = this.data.map(d => d[this.xValue]);
@@ -69,33 +83,54 @@ class ScatterPlotChart{
 		push();
 
 		translate(gap, 0);
+		// Legend
+		for (let i = 0; i < this.yValues.length; i++) {
+            // Calculate position for each legend item
+
+            noStroke();
+            textSize(this.legendTextSize);
+            textFont(this.legendFontStyle);
+            fill(this.legendFontColour);
+            text(this.legendText[i], this.legendTextX, -this.legendTextY - (i * 25));
+
+            fill(colors[i]); 
+            rect(this.legendX, -this.legendY - (i * 25), this.legendWidth, this.legendHeight);
+        }
+
 		for(let i = 0; i < this.data.length; i++){
-			
+			push();
 			// Making the plots
-			fill(this.barColor)
-			noStroke();
-			ellipse(this.barWidth, -this.data[i][this.yValue]*this.scale, 10, 10);
-			stroke(180);
-		
-			
+			for(let y=0; y<this.yValues.length; y++){
+				let barHeight = int(this.data[i][this.yValues[y]] * this.scale);
+				noStroke();
+				fill(colors[y%colors.length]);
+				ellipse(this.barWidth, -barHeight, 10, 10);
+				// changes location of ellipse
+				translate(0,0);
+			}
 			// Labels
+			pop();
+
 			push();
 			translate(this.barWidth/2,5);
 			textAlign(LEFT, TOP);
 			rotate(this.labelRotation);
+			noStroke();
 			fill(this.labelColour);
+
 			textSize(this.labelTextSize);
 			textFont(this.labelFontStyle);
 			text(xLabels[i],0,0);
 			pop()
-			translate(gap+this.barWidth,0)
+
+			translate(gap+this.barWidth,0);
+			
 		}
 		pop();
-// Ticks
+
+		// Ticks
 		for(let i = 0; i<=this.numTicks;i++){
 			push();
-			stroke(180);
-			line(0, -this.chartHeight / 10 * i, this.chartWidth, -this.chartHeight / 10 * i);
 			translate(0,i*(-this.chartHeight/this.numTicks))
 			noFill();
 			stroke(this.tickColor)
@@ -105,7 +140,6 @@ class ScatterPlotChart{
 			fill(this.tickValueColor);
 			textSize(this.tickTextSize);
 			textFont(this.tickFontStyle);
-
 			let tickGap =  (this.maxValue / this.numTicks).toFixed(2);
 			text((tickGap*i).toFixed(2),(this.valueGap) - 5,0)
 			pop();
@@ -116,12 +150,13 @@ class ScatterPlotChart{
 	textSize(this.titleSize);
 	textFont(this.titleFontStyle);
 	fill(this.titleColour);
-	text(this.titleText, this.titleWidth, -425);
+	text(this.titleText, this.titleWidth, -this.chartHeight-25);
 
 
 		pop();
 		
 	}
 
+	
 
 }

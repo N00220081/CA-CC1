@@ -1,10 +1,12 @@
 let barCharts = [];
 let data1;
 let data2;
+let data3;
 let cleanData1=[];
 let cleanData2=[];
+let cleanData3=[];
 let numRows;
-let colors = ["#8C5483","#53324D"];
+let colors = ["#8C5483","#53324D", "#53324D", "#53324D"];
 
 
 let fontLight;
@@ -12,8 +14,9 @@ let fontReg;
 let fontBold;
 
 function preload(){
-    data1 = loadTable("data/Enrolls.csv", "csv", "header");
-    data2 = loadTable("data/combined.csv", "csv", "header");
+    data1 = loadTable("data/1-6.csv", "csv", "header");
+    data2 = loadTable("data/infants.csv", "csv", "header");
+    data3 = loadTable("data/combined.csv", "csv", "header");
     fontLight = loadFont('fonts/Roboto-Thin.ttf');
     fontReg = loadFont('fonts/Roboto-Regular.ttf');
     fontBold = loadFont("fonts/Roboto-Bold.ttf");
@@ -28,13 +31,19 @@ function setup(){
     for(let i=0;i<numRows;i++){
         cleanData1.push(data1.rows[i].obj)
     }
-    console.log(cleanData1)
+    console.log(cleanData1);
 
     numRows = data2.rows.length;
     for(let i=0;i<numRows;i++){
         cleanData2.push(data2.rows[i].obj)
     }
-    console.log(cleanData2)
+    console.log(cleanData2);
+    
+    numRows = data3.rows.length;
+    for(let i=0;i<numRows;i++){
+        cleanData3.push(data3.rows[i].obj)
+    }
+    console.log(cleanData3);
 
     let barChart = {
 
@@ -268,27 +277,28 @@ function setup(){
 
     let scatterPlotChart = {
 
-        data:cleanData2,
+        data:cleanData3,
         
         // Size of chart
-        chartHeight:400,
-        chartWidth:500,
+        chartHeight:300,
+        chartWidth:400,
 
         // Position of chart
-        xPos:1400,
-        yPos:650,
+        xPos:1350,
+        yPos:400,
 
         // Axis decoration and the values of the chart
         axisLineColour:"#151126",
         axisLineThickness: 1.3,
-        yValue: "Junior_infants",
-        xValue:"Year",
+        xValue: "Year",
+        yValues:["1st-6th", "Infants"],
+        zValue:"Total",
 
         // Bars
         barWidth:28,
-        barColor:"#8C5483",
+        // barColor:"#8C5483",
         // barStroke:"#8C5483",
-        // barStrokeWeight:1,
+        // barStrokeWeight: 0,
 
         // Labels
         labelRotation:45,
@@ -298,7 +308,7 @@ function setup(){
 
         
         // Ticks
-        numTicks:10,
+        numTicks:5,
         tickColor:"#151126",
         tickValueColor:"#151126",
         tickFontStyle:fontReg,
@@ -308,13 +318,23 @@ function setup(){
 
 
         // Title
-        titleText: "How many Girls Enrolled to Primary School",
+        titleText: "All Children that Enrolled",
         titleXOffset: CENTER,
         titleYOffset: BOTTOM,
         titleSize: 22,
         titleFontStyle:fontReg,
 		titleColour: "#46387C",
 
+        // Legend 
+        legendX: 100,
+        legendY: 100,
+        legendWidth: 15,
+        legendHeight: 15,
+        legendTextSize: 15,
+        legendText: ["1st to 6th class","Juniors and Seniors"],
+        legendFontStyle: fontBold,
+        legendFontColour: "#46387C"
+        
         
     }
 

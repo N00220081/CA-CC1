@@ -115,7 +115,8 @@ class HorizontalBarChart {
 		textSize(this.titleSize);
 		textFont(this.titleFontStyle);
 		fill(this.titleColour);
-		text(this.titleText, this.titleWidth, -325);
+		text(this.titleText, this.titleWidth, -this.chartHeight-25);
+
 
 
 		pop();
