@@ -77,7 +77,7 @@ function setup(){
 
         
         // Ticks
-        numTicks:5,
+        numTicks:10,
         tickColor:"#151126",
         tickValueColor:"#151126",
         tickFontStyle:fontReg,
@@ -130,7 +130,7 @@ function setup(){
 
         
         // Ticks
-        numTicks:5,
+        numTicks:10,
         tickColor:"#151126",
         tickValueColor:"#151126",
         tickFontStyle:fontReg,
@@ -193,7 +193,7 @@ function setup(){
 
         
         // Ticks
-        numTicks:5,
+        numTicks:10,
         tickColor:"#151126",
         tickValueColor:"#151126",
         tickFontStyle:fontReg,
@@ -210,9 +210,6 @@ function setup(){
         titleFontStyle:fontReg,
 		titleColour: "#46387C",
 
-        // Legend 
-        // legendX: 100,
-        // legendY: 100,
         legendWidth: 15,
         legendHeight: 15,
         legendTextSize: 15,
@@ -308,7 +305,7 @@ function setup(){
 
         
         // Ticks
-        numTicks:5,
+        numTicks:10,
         tickColor:"#151126",
         tickValueColor:"#151126",
         tickFontStyle:fontReg,
@@ -338,8 +335,61 @@ function setup(){
         
     }
 
+    let barChart2 = {
+
+        data:cleanData3,
+        
+        // Size of chart
+        chartHeight:300,
+        chartWidth:400,
+
+        // Position of chart
+        xPos:1350,
+        yPos:900,
+
+        // Axis decoration and the values of the chart
+        axisLineColour:"#151126",
+        axisLineThickness: 1.3,
+        yValue: "Infants",
+        xValue:"Year",
+
+        // Bars
+        barWidth:28,
+        barColor:"#8C5483",
+        // barStroke:"#8C5483",
+        // barStrokeWeight:1,
+
+        // Labels
+        labelRotation:45,
+        labelColour:"#2F3159",
+        labelTextSize:14,
+        labelFontStyle:fontBold,
+
+        
+        // Ticks
+        numTicks:10,
+        tickColor:"#151126",
+        tickValueColor:"#151126",
+        tickFontStyle:fontReg,
+        tickTextSize:14,
+        tickLength:-5,
+        valueGap:-10,
+
+
+        // Title
+        titleText: "How many Children Not Over the Age of 6 Enrolled",
+        titleXOffset: CENTER,
+        titleYOffset: BOTTOM,
+        titleSize: 22,
+        titleFontStyle:fontReg,
+		titleColour: "#46387C",
+
+        
+    }
+
 
     barCharts.push(new BarChart(barChart));
+    barCharts.push(new BarChart(barChart2));
     barCharts.push(new StackedBarChart(stackedBarChart));
     barCharts.push(new HundStackedBarChart(hundStackedBarChart));
     barCharts.push(new HorizontalBarChart (horizontalBarChart));

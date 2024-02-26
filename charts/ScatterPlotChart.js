@@ -83,19 +83,17 @@ class ScatterPlotChart{
 		push();
 
 		translate(gap, 0);
+		
 		// Legend
-		for (let i = 0; i < this.yValues.length; i++) {
-            // Calculate position for each legend item
-
-            noStroke();
-            textSize(this.legendTextSize);
-            textFont(this.legendFontStyle);
-            fill(this.legendFontColour);
-            text(this.legendText[i], this.legendTextX, -this.legendTextY - (i * 25));
-
-            fill(colors[i]); 
-            rect(this.legendX, -this.legendY - (i * 25), this.legendWidth, this.legendHeight);
-        }
+		for (let l = 0; l < this.yValues.length; l++) {
+			noStroke();
+			textSize(this.legendTextSize);
+			textFont(this.legendFontStyle);
+			fill(this.legendFontColour);
+			text(this.legendText[l], this.legendTextX, -this.legendTextY - (l * 25));
+            fill(colors[l]); 
+            rect(this.legendX, -this.legendY - (l * 25), this.legendWidth, this.legendHeight);
+		}
 
 		for(let i = 0; i < this.data.length; i++){
 			push();
