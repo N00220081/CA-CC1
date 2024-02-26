@@ -337,7 +337,7 @@ function setup(){
 
     let barChart2 = {
 
-        data:cleanData3,
+        data:cleanData2,
         
         // Size of chart
         chartHeight:300,
@@ -350,7 +350,7 @@ function setup(){
         // Axis decoration and the values of the chart
         axisLineColour:"#151126",
         axisLineThickness: 1.3,
-        yValue: "Infants",
+        yValue: "Senior_infants",
         xValue:"Year",
 
         // Bars
@@ -377,7 +377,7 @@ function setup(){
 
 
         // Title
-        titleText: "How many Children Not Over the Age of 6 Enrolled",
+        titleText: "How many Children started Primary School as Senior Infants",
         titleXOffset: CENTER,
         titleYOffset: BOTTOM,
         titleSize: 22,
