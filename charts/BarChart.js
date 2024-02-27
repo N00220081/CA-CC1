@@ -23,7 +23,7 @@ class BarChart{
 		this.xValue = obj.xValue;
 
 		// Calculates maximum value in the data
-		// map() = takes any number and scales it to a new number
+		// map() = remaps a numver from one range to another
 		this.maxValue = max(this.data.map(d => d[this.yValue]));
 		// Scales based of chartHeight divided by maximum value
 		this.scale = this.chartHeight / this.maxValue;

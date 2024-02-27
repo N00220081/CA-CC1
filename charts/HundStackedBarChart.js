@@ -1,5 +1,11 @@
 class HundStackedBarChart {
+
+	
+
 	constructor(obj) {
+
+		this.columnTotals = []
+
 		this.data = obj.data;
 
 		//Charts
@@ -66,6 +72,8 @@ class HundStackedBarChart {
 
 	}
 
+	
+
 	render() {
 
 		push();
@@ -95,11 +103,14 @@ class HundStackedBarChart {
             rect(this.legendX, -this.legendY - (l * 25), this.legendWidth, this.legendHeight);
 		}
 
+
+
 		// Making the bars
 		for (let i = 0; i < this.data.length; i++) {
 			push();
 		
 				for (let y = 0; y < this.yValues.length; y++) {
+
 					let totalValue = (this.data[i][this.yValues[y]] / this.data[i][this.zValue]);
 					let barHeight = (this.chartHeight * totalValue);
 					noStroke();
@@ -128,6 +139,10 @@ class HundStackedBarChart {
 			
 
 		}
+
+
+		console.log('Column totals: ', this.columnTotals)
+
 		pop();
 
 		// Ticks

@@ -153,7 +153,7 @@ function setup(){
         legendWidth: 15,
         legendHeight: 15,
         legendTextSize: 15,
-        legendText: ["Girls","Boys"],
+        legendText: ["Junior infants","Senior infants"],
         legendFontStyle: fontBold,
         legendFontColour: "#46387C"
         
